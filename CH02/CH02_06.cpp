@@ -1,14 +1,23 @@
 #include <iostream>
 using namespace std;
 
+#define HARD_CODED_ENABLE
+#ifdef HARD_CODED_ENABLE
+#else
+#endif
+
 int main()
 {
+#ifdef HARD_CODED_ENABLE
+	int M = 2, N = 3, row, col;
+#else
 	int M, N, row, col;
 	cout << "[Enter the dimensions of the MxN matrix]" << endl;
 	cout << "Please enter the dimension M: ";
 	cin >> M;
 	cout << "Please enter the dimension N: ";
 	cin >> N;
+#endif
 
 	int *arrA = new int[M * N]; // «Å§i°ÊºA°}¦C
 	int *arrB = new int[M * N];
@@ -17,8 +26,14 @@ int main()
 	{
 		for (col = 1; col <= N; col++)
 		{
+#ifdef HARD_CODED_ENABLE
+			static int ii = 1;
+			arrA[(row - 1) * N + (col - 1)] = ii;
+			++ii;
+#else
 			cout << "a" << row << col << "=";
 			cin >> arrA[(row - 1) * N + (col - 1)];
+#endif
 		}
 	}
 	cout << "[Enter the matrix content as]" << endl;
