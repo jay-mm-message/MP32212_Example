@@ -3,7 +3,9 @@ using namespace std;
 
 const int ROWS = 3;
 const int COLS = 3;
-void MatrixAdd(int *, int *, int *, int, int); // 函數原型
+void MatrixAdd(int *, int *, int *, int, int);	// 函數原型
+void TMatrixAdd(int *, int *, int *, int, int); // 函數原型
+
 int main()
 {
 	int A[ROWS][COLS] = {{1, 3, 5},
@@ -27,7 +29,9 @@ int main()
 			cout << B[i][j] << "\t";
 		cout << endl;
 	}
-	MatrixAdd(&A[0][0], &B[0][0], &C[0][0], ROWS, COLS);
+	// MatrixAdd(&A[0][0], &B[0][0], &C[0][0], ROWS, COLS);
+	cout << "new TMatrixAdd" << endl;
+	TMatrixAdd(&A[0][0], &B[0][0], &C[0][0], ROWS, COLS);
 	cout << "[Display the result of adding matrix A and matrix B]" << endl; // 印出A+B的內容
 	for (int i = 0; i < ROWS; i++)
 	{
@@ -46,4 +50,18 @@ void MatrixAdd(int *arrA, int *arrB, int *arrC, int dimX, int dimY)
 	for (int row = 1; row <= dimX; row++)
 		for (int col = 1; col <= dimY; col++)
 			arrC[(row - 1) * dimY + (col - 1)] = arrA[(row - 1) * dimY + (col - 1)] + arrB[(row - 1) * dimY + (col - 1)];
+}
+
+void TMatrixAdd(int *in_arrA, int *in_arrB, int *out_arrC, int ROWS, int COLS)
+{
+
+	for (size_t i = 1; i <= ROWS; i++)
+	{
+		/* code */
+		for (size_t j = 1; j <= COLS; j++)
+		{
+			/* code */
+			out_arrC[(i - 1) * ROWS + (j - 1)] = in_arrA[(i - 1) * ROWS + (j - 1)] + in_arrB[(i - 1) * ROWS + (j - 1)];
+		}
+	}
 }
