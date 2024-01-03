@@ -87,6 +87,10 @@ int main() {
     int *c_m = new int[m*p];
     product_maxtrices(a_m, b_m, c_m, m, n, p);
     show_matrix(c_m, m, p);
+
+    delete [] a_m;
+    delete [] b_m;
+    delete [] c_m;
     
     return 0;
 }
