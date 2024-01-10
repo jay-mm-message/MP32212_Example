@@ -65,7 +65,9 @@ int main()
 	int i, j, position = 0, find, data[12][2];
 	char namedata[12][10] = {{"Allen"}, {"Scott"}, {"Marry"}, {"John"}, {"Mark"}, {"Ricky"}, {"Lisa"}, {"Jasica"}, {"Hanson"}, {"Amy"}, {"Bob"}, {"Jack"}};
 	srand((unsigned)time(NULL));
-	cout << "座號  成績  座號  成績  座號  成績  座號  成績" << endl;
+
+	//cout << "座號  成績  座號  成績  座號  成績  座號  成績" << endl;
+	cout << "Seat Number Score" << endl;
 	cout << "==============================================" << endl;
 	for (i = 0; i < 12; i++)
 	{
@@ -81,7 +83,8 @@ int main()
 	head = new node; // 建立串列首
 	if (!head)
 	{
-		cout << "Error!! 記憶體配置失敗!!" << endl;
+		//cout << "Error!! 記憶體配置失敗!!" << endl;
+		cout << "Error!! Memory allocation failed!!" << endl;
 		exit(1);
 	}
 	head->num = data[0][0];
@@ -103,24 +106,29 @@ int main()
 	}
 	while (1)
 	{
-		cout << "請輸入要插入其後的學生編號，結束輸入-1：";
+		//cout << "請輸入要插入其後的學生編號，結束輸入-1：";
+		cout << "Please enter the student ID to insert after, and end input with -1.";
 		cin >> position;
 		if (position == -1) // 迴圈中斷條件
 			break;
 		else
 		{
 			ptr = findnode(head, position);
-			cout << "請輸入新插入的學生編號：";
+			cout << "Please enter the student ID for the new insertion:";
+			//cout << "請輸入新插入的學生編號：";
 			cin >> new_num;
-			cout << "請輸入新插入的學生成績：";
+			cout << "Please enter the new student's grade to be inserted:";
+			//cout << "請輸入新插入的學生成績：";
 			cin >> new_score;
-			cout << "請輸入新插入的學生姓名：";
+			cout << "Please enter the name of the new student to be inserted:";
+			//cout << "請輸入新插入的學生姓名：";
 			cin >> new_name;
 			head = insertnode(head, ptr, new_num, new_score, new_name);
 		}
 	}
 	ptr = head;
-	cout << "\n\t座號\t    姓名\t成績\n";
+	cout << "\n\tSeat number\t		Name\tGrade\n";
+	//cout << "\n\t座號\t    姓名\t成績\n";
 	cout << "\t==============================\n";
 	while (ptr != NULL)
 	{
