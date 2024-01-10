@@ -39,6 +39,14 @@ void prepareList(class list** dataList, int size) {
 }
 
 void showList(class list** dataList) {
+
+    if (*dataList == NULL)
+    {
+        /* code */
+        cout << "List is empty" << endl;
+        return;
+    }
+    
     class list* ptr = *dataList;
 
     while( ptr != NULL) {
@@ -114,6 +122,21 @@ void insertSelIndex(class list **dataList, int index, int element, char letters[
     ptr->next = newNode;
 }
 
+void delListInFront(class list **dataList) {
+    class list *ptr = *dataList;
+
+    class list *currentPtr = NULL;
+    while (ptr->next != NULL)
+    {
+        /* code */
+        currentPtr = ptr->next;
+        delete ptr;
+        ptr = currentPtr;
+    }
+    delete ptr;
+    *dataList = NULL;
+}
+
 int main() {
 
     class list *head = NULL;
@@ -128,6 +151,8 @@ int main() {
     showList(&head);
     char data3[] = {'c', '3', '\0'};
     insertSelIndex(&head, 5, 300, data3);
+    showList(&head);
+    delListInFront(&head);
     showList(&head);
 
     return 0;
