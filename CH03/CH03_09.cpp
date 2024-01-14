@@ -41,7 +41,7 @@ link insertnode(link head, link after, int num, int score, char name[10])
 	InsertNode->next = NULL;
 	if (InsertNode == NULL)
 	{
-		cout << "記憶體配置失敗" << endl;
+		cout << "Memory configuration fail" << endl;
 		return NULL;
 	}
 	else
@@ -87,7 +87,7 @@ int main()
 	int i, j, position = 0, find, data[12][2];
 	char namedata[12][10] = {{"Allen"}, {"Scott"}, {"Marry"}, {"John"}, {"Mark"}, {"Ricky"}, {"Lisa"}, {"Jasica"}, {"Hanson"}, {"Amy"}, {"Bob"}, {"Jack"}};
 	srand((unsigned)time(NULL));
-	cout << "座號  成績  座號  成績  座號  成績  座號  成績" << endl;
+	cout << "Seat  Grade  Seat  Grade  Seat  Grade  Seat  Grade" << endl;
 	cout << "==============================================" << endl;
 	for (i = 0; i < 12; i++)
 	{
@@ -103,7 +103,7 @@ int main()
 	head = new node; // 建立串列首
 	if (!head)
 	{
-		cout << "Error!! 記憶體配置失敗!!" << endl;
+		cout << "Error!! Memory configuration fail!!" << endl;
 		exit(1);
 	}
 	head->num = data[0][0];
@@ -126,24 +126,24 @@ int main()
 	newnode->next = head; // 將最後一個節點指向頭節點就成了環狀鏈結
 	while (1)
 	{
-		cout << "請輸入要插入其後的學生編號，結束輸入-1：";
+		cout << "Please enter the student number to insert after, and end input with -1:";
 		cin >> position;
 		if (position == -1) /*迴圈中斷條件*/
 			break;
 		else
 		{
 			ptr = findnode(head, position);
-			cout << "請輸入新插入的學生編號：";
+			cout << "Please enter the new student number for insertion:";
 			cin >> new_num;
-			cout << "請輸入新插入的學生成績：";
+			cout << "Please enter the new student grade for insertion:";
 			cin >> new_score;
-			cout << "請輸入新插入的學生姓名：";
+			cout << "Please enter the new student name for insertion:";
 			cin >> new_name;
 			head = insertnode(head, ptr, new_num, new_score, new_name);
 		}
 	}
 	ptr = head; // 指向串列的開頭
-	cout << "\n\t座號\t    姓名\t成績\n";
+	cout << "\n\tSeat\t    Name\tGrade\n";
 	cout << "\t==============================\n";
 	do
 	{
