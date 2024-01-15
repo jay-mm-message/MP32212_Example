@@ -135,14 +135,14 @@ link insert_node(link head, int num, link data) {
 
     if (p->rlink == NULL)
     {
-        cout << "insert tail" << endl;
+        cout << "insert tail: " << p->num << endl;
         /* code */
         p->rlink = newNode;
         newNode->llink = p;
     }
     else if (p->llink == NULL)
     {
-        cout << "insert head" << endl;
+        cout << "insert head: " << p->num << endl;
         /* code */
         newNode->rlink = p;
         p->llink = newNode;
@@ -150,7 +150,7 @@ link insert_node(link head, int num, link data) {
     }
     else
     {
-        cout << "insert middle" << endl;
+        cout << "insert middle: " << p->num << endl;
         //newNode
         newNode->rlink = p->rlink;
         p->rlink->llink = newNode;
