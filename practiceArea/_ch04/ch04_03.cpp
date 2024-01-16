@@ -5,12 +5,11 @@ class Node {
     public:
         int num;
         class Node *next;
-
+    public: // constructor
         Node(int n) {
             num = n;
             next = NULL;
         }
-
         Node() {
             num = -1;
             next = NULL;
@@ -20,11 +19,10 @@ class Node {
 class Linked_Stack {
     private:
         class Node *head;
-    public:
-
+    public: // constructor
         Linked_Stack();
         Linked_Stack(int data);
-
+    public: // member function
         bool isEmpty();
         void push_stack(int data);
         int pop_stack();
