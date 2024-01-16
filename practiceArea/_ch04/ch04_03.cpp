@@ -35,8 +35,8 @@ int main() {
     for (size_t i = 0; i < 10; i++)
     {
         /* code */
-        cout << "push (" << i << ") into linked stack" << endl;
         linkedStack.push_stack(i);
+        cout << "push (" << i << ") into linked stack" << endl;
     }
     
     cout << endl;
