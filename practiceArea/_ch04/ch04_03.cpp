@@ -64,33 +64,37 @@ bool Linked_Stack::isEmpty()  {
 void Linked_Stack::push_stack(int data)  {
 
     class Node *newNode = new Node(data);
-    
-    if (isEmpty()) {
+
+    if (!isEmpty())
+    {
         /* code */
-        head = newNode;
-    }
-    else {
         class Node *p = head;
         newNode->next = p;
         head = newNode;
+
+        return;
     }
+    
+    head = newNode;
+    return;
 }
 
 int Linked_Stack::pop_stack() {
 
-    if (isEmpty())
+    if (!isEmpty())
     {
         /* code */
-        cout << "Stack is empty" << endl;
-        return -1;
+        class Node *d = head;
+        head = head->next;
+
+        int data = d->num;
+        delete d;
+        
+        return data;
     }
     
-    class Node *d = head;
-    head = head->next;
-
-    int data = d->num;
-    delete d;
-    return data;
+    cout << "Stack is empty" << endl;
+    return -1;
 }
 
 Linked_Stack::Linked_Stack(int data)  {
