@@ -15,8 +15,9 @@ void print_table()
    int x = 0, y = 0;
    number += 1;
    cout << endl;
-   cout << "八皇后問題的第" << setw(2) << number << "組解" << endl
-        << "\t";
+   cout << "The " << setw(2) << number << " set of solutions to the Eight Queens Problem" 
+         << endl  << "\t";
+   //cout << "八皇后問題的第" << setw(2) << number << "組解" << endl
    for (x = 0; x < EIGHT; x++)
    {
       for (y = 0; y < EIGHT; y++)
@@ -67,5 +68,6 @@ int attack(int row, int col)
 int main(void)
 {
    decide_position(0);
+   cout << endl;
    return 0;
 }
