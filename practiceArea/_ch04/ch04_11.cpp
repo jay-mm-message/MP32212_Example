@@ -46,7 +46,14 @@ void infix_to_postfix()
 	char stack_t[MAX];
 	for (i = 0; i < MAX; i++)
 		stack_t[i] = '\0';
-	gets(infix_q);
+		    // Using fgets to read input
+
+    if (fgets(infix_q, sizeof(infix_q), stdin) != nullptr) {
+        // Your code using the input goes here
+        std::cout << "\tYou entered: " << infix_q;
+    }
+
+	// gets(infix_q);
 	i = 0;
 	while (infix_q[i] != '\0')
 	{
