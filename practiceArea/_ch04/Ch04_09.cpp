@@ -12,10 +12,17 @@ const int MAZE_ORG_MODE = 2;
 const int MAZE_MODE 	= 3;
 void show_state(int mode);
 
-struct list
+class list
 {
-	int x, y;
-	struct list *next;
+	public:
+		int x, y;
+		struct list *next;
+	public:
+		list() {
+			x = 0;
+			y = 0;
+			next = NULL;
+		}
 };
 typedef struct list node;
 typedef node *link;
@@ -89,22 +96,15 @@ int main(void)
 	cout << "Path taken by the mouse (section 2)" << endl << endl;
 	// cout<<"[老鼠走過的路徑(2的部分)]"<<endl; //印出老鼠走完迷宮後的路徑圖
 	show_state(TAKEN_MODE);
-	// for (i = 0; i < ROWS; i++)
-	// {
-	// 	for (j = 0; j < COLS; j++)
-	// 		//cout << MAZE[i][j] << " ";
-	// 		cout << TAKEN[i][j] << " ";
-	// 	cout << endl;
-	// }
 	return 0;
 }
 link push(link stack, int x, int y)
 {
-	link newnode;
-	newnode = new node;
+	link newnode = new node;
+
 	if (!newnode)
 	{
-		cout << "Error ! memory fail" << endl;
+		cout << "Error !! memory fail" << endl;
 		// cout<<"Error!記憶體配置失敗!"<<endl;
 		return NULL;
 	}
