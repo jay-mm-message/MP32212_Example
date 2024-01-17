@@ -4,8 +4,8 @@
 #define SOUTH MAZE[x + 1][y] // 定義南方的相對位置
 #define NORTH MAZE[x - 1][y] // 定義北方的相對位置
 using namespace std;
-const int ExitX = 8;  // 定義出口的X座標在第八列
-const int ExitY = 10; // 定義出口的Y座標在第十行
+const int ExitX = 9;  // 定義出口的X座標在第八列
+const int ExitY = 12; // 定義出口的Y座標在第十行
 struct list
 {
 	int x, y;
@@ -13,33 +13,46 @@ struct list
 };
 typedef struct list node;
 typedef node *link;
-int MAZE[10][12] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 宣告迷宮陣列
-					1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-					1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1,
-					1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1,
-					1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1,
-					1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1,
-					1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1,
-					1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1,
-					1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1,
-					1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+
+const int ROWS = 10;
+const int COLS = 12;
+int MAZE[ROWS][COLS] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 宣告迷宮陣列
+						0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+						1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1,
+						1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1,
+						1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1,
+						1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1,
+						1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1,
+						1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1,
+						1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1,
+						1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1};
+
+int TAKEN[ROWS][COLS] = {0};
+int PATH[ROWS][COLS] = {0};
 link push(link stack, int x, int y);
 link pop(link stack, int *x, int *y);
 int chkExit(int, int, int, int);
+void show_taken(int maze[ROWS][COLS]);
+void path_taken(int maze[ROWS][COLS]);
+void show_map();
+
 int main(void)
 {
 	int i, j;
 	link path = NULL;
 	int x = 1; // 入口的X座標
-	int y = 1; // 入口的Y座標
+	int y = 0; // 入口的Y座標
 	cout << "[Path of the maze (section 0):]" << endl;
 	// cout<<"[迷宮的路徑(0的部分)]"<<endl; //印出迷宮的路徑圖
-	for (i = 0; i < 10; i++)
+	for (i = 0; i < ROWS; i++)
 	{
-		for (j = 0; j < 12; j++)
+		for (j = 0; j < COLS; j++) {
 			cout << MAZE[i][j] << " ";
+			PATH[i][j] = MAZE[i][j];
+		}
 		cout << endl;
 	}
+	cout << endl;
 	while (x <= ExitX && y <= ExitY)
 	{
 		MAZE[x][y] = 2;
@@ -47,11 +60,13 @@ int main(void)
 		{
 			x -= 1;
 			path = push(path, x, y);
+			show_taken(MAZE);
 		}
 		else if (SOUTH == 0)
 		{
 			x += 1;
 			path = push(path, x, y);
+			show_taken(MAZE);
 		}
 		else if (WEST == 0)
 		{
@@ -62,6 +77,7 @@ int main(void)
 		{
 			y += 1;
 			path = push(path, x, y);
+			show_taken(MAZE);
 		}
 		else if (chkExit(x, y, ExitX, ExitY) == 1) // 檢查是否走到出口了
 			break;
@@ -69,14 +85,16 @@ int main(void)
 		{
 			MAZE[x][y] = 2;
 			path = pop(path, &x, &y);
+			show_taken(MAZE);
 		}
 	}
 	cout << "Path taken by the mouse (section 2)" << endl;
 	// cout<<"[老鼠走過的路徑(2的部分)]"<<endl; //印出老鼠走完迷宮後的路徑圖
-	for (i = 0; i < 10; i++)
+	for (i = 0; i < ROWS; i++)
 	{
-		for (j = 0; j < 12; j++)
-			cout << MAZE[i][j] << " ";
+		for (j = 0; j < COLS; j++)
+			//cout << MAZE[i][j] << " ";
+			cout << TAKEN[i][j] << " ";
 		cout << endl;
 	}
 	return 0;
@@ -127,4 +145,60 @@ int chkExit(int x, int y, int ex, int ey)
 			return 1;
 	}
 	return 0;
+}
+
+void path_taken(int maze[ROWS][COLS]) {
+	for (size_t i = 0; i < ROWS; i++)
+	{
+		/* code */
+		for (size_t j = 0; j < COLS; j++)
+		{
+			/* code */
+			if (maze[i][j] == 2)
+			{
+				/* code */
+				TAKEN[i][j] = maze[i][j];
+			}
+			
+		}
+		
+	}
+}
+
+int g_i = 0;
+void show_taken(int maze[ROWS][COLS]) {
+
+	cout << "Press Enter to continue...";
+    cin.get(); // Wait for the user to press Enter
+
+	cout << g_i << "----------------------------"  << endl;
+	show_map();
+	path_taken(maze);
+	for (size_t i = 0; i < ROWS; i++)
+	{
+		/* code */
+		for (size_t j = 0; j < COLS; j++)
+		{
+			/* code */
+			cout << TAKEN[i][j] << ' ';
+		}
+		cout << endl;
+	}
+	cout << endl;
+	cout << "----------------------------"  << endl;
+	++g_i;
+}
+
+void show_map() {
+	for (size_t i = 0; i < ROWS; i++)
+	{
+		/* code */
+		for (size_t j = 0; j < COLS; j++)
+		{
+			/* code */
+			cout << PATH[i][j] << ' ';
+		}
+		cout << endl;
+	}
+	cout << endl;
 }
