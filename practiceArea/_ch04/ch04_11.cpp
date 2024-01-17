@@ -48,12 +48,8 @@ void infix_to_postfix()
 		stack_t[i] = '\0';
 		    // Using fgets to read input
 
-    if (fgets(infix_q, sizeof(infix_q), stdin) != nullptr) {
-        // Your code using the input goes here
-        std::cout << "\tYou entered: " << infix_q;
-    }
-
-	// gets(infix_q);
+	cin.getline(infix_q, sizeof(infix_q));
+	
 	i = 0;
 	while (infix_q[i] != '\0')
 	{
@@ -61,8 +57,7 @@ void infix_to_postfix()
 		rear++;
 	}
 	infix_q[rear] = 'q'; // 於佇列加入q為結束符號
-	cout << "\t"
-		<< "Postfix expression: ";
+	cout << "\t" << "Postfix expression: ";
 		// << "後序表示法 : ";
 	stack_t[top] = 'q'; // 於堆疊加入q為結束符號
 	for (flag = 0; flag <= rear; flag++)
