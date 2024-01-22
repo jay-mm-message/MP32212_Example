@@ -33,8 +33,8 @@ const int POSTORDER = 3;
 void show(Link tree, int mode);
 
 Link searchNode(Link tree, char letter);
-
-
+Link findMinNode(Link tree);
+void delNode(Link tree, char letter);
 
 void test_arg(BTree bt, int count);
 int BTree::node_no = 1;
@@ -60,11 +60,22 @@ int main(void) {
     show(bt.rtNode, PREORDER);
     show(bt.rtNode, POSTORDER);
 
-    char letter = 'A';
+    cout << endl;
+
+    char letter = 'D';
     // cout << "Please enter search letter: ";
     // cin >> letter;
-    Link node = searchNode(bt.rtNode, letter);
-    cout << "Found out: " << letter << ", Node: " << node->no << endl; 
+    //Link node = searchNode(bt.rtNode, letter);
+    //cout << "Found out: " << letter << ", Node: " << node->no << endl; 
+    cout << "Del node: " << letter << endl;
+    delNode(bt.rtNode, letter);
+    cout << endl;
+
+    show(bt.rtNode, INORDER);
+    show(bt.rtNode, PREORDER);
+    show(bt.rtNode, POSTORDER);
+
+
     // cout << bt.rtNode->l << ' ';
     // cout << bt.rtNode->lt->l << ' ';
     // cout << bt.rtNode->lt->lt->l << ' ';
@@ -245,4 +256,25 @@ Link searchNode(Link tree, char letter) {
         
     }
     
+}
+
+Link findMinNode(Link tree) {
+    Link minNode = tree;
+    while (minNode->lt != nullptr) {
+        minNode = minNode->lt;
+    }
+    Link p = tree;
+    while (p->lt != minNode) {
+        p = p->lt;
+    }
+    p->lt = nullptr;
+    return minNode;
+}
+
+void delNode(Link tree, char letter) {
+    Link delNode = searchNode(tree, letter);
+    Link rMinNode = findMinNode(tree->rt);
+
+    delNode->l = rMinNode->l;
+    delete rMinNode;
 }
