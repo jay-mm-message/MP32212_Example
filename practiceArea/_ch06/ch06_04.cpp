@@ -27,9 +27,11 @@ void inorder(Link tree);
 void preorder(Link tree);
 void postorder(Link tree);
 
+const int ALLORDER  = 0;
 const int INORDER   = 1;
 const int PREORDER  = 2;
 const int POSTORDER = 3;
+
 void show(Link tree, int mode);
 
 Link searchNode(Link tree, char letter);
@@ -56,9 +58,7 @@ int main(void) {
 
     cout << endl;
 
-    show(bt.rtNode, INORDER);
-    show(bt.rtNode, PREORDER);
-    show(bt.rtNode, POSTORDER);
+    show(bt.rtNode, ALLORDER);
 
     cout << endl;
 
@@ -71,10 +71,7 @@ int main(void) {
     delNode(bt.rtNode, letter);
     cout << endl;
 
-    show(bt.rtNode, INORDER);
-    show(bt.rtNode, PREORDER);
-    show(bt.rtNode, POSTORDER);
-
+    show(bt.rtNode, ALLORDER);
 
     // cout << bt.rtNode->l << ' ';
     // cout << bt.rtNode->lt->l << ' ';
@@ -235,6 +232,17 @@ void show(Link tree, int mode) {
         break;
     case POSTORDER:
         // answer: ACBEGFD
+        cout << "Postorder: ";
+        postorder(tree);
+        cout << endl;
+        break;
+    case ALLORDER:
+        cout << "Inorder: ";
+        inorder(tree);
+        cout << endl;
+        cout << "Preorder: ";
+        preorder(tree);
+        cout << endl;
         cout << "Postorder: ";
         postorder(tree);
         cout << endl;
