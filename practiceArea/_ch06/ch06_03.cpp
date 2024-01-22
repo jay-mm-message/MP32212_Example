@@ -24,11 +24,7 @@ class BTree {
 };
 
 void inorder(Link tree);
-
-
 void preorder(Link tree);
-
-
 void postorder(Link tree);
 
 const int INORDER   = 1;
