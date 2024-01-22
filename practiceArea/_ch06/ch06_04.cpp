@@ -32,7 +32,9 @@ const int PREORDER  = 2;
 const int POSTORDER = 3;
 void show(Link tree, int mode);
 
-int searchNode(Link tree, char letter);
+Link searchNode(Link tree, char letter);
+
+
 
 void test_arg(BTree bt, int count);
 int BTree::node_no = 1;
@@ -61,8 +63,8 @@ int main(void) {
     char letter = 'A';
     // cout << "Please enter search letter: ";
     // cin >> letter;
-    int node_no = searchNode(bt.rtNode, letter);
-    cout << "Found out: " << letter << ", Node: " << node_no << endl; 
+    Link node = searchNode(bt.rtNode, letter);
+    cout << "Found out: " << letter << ", Node: " << node->no << endl; 
     // cout << bt.rtNode->l << ' ';
     // cout << bt.rtNode->lt->l << ' ';
     // cout << bt.rtNode->lt->lt->l << ' ';
@@ -229,12 +231,12 @@ void show(Link tree, int mode) {
     }
 }
 
-int searchNode(Link tree, char letter) {
+Link searchNode(Link tree, char letter) {
     while (true)
     {
         /* code */
         if (letter == tree->l) {
-            return tree->no;
+            return tree;
         } else if (letter > tree->l) {
             tree = tree->rt;
         } else if (letter < tree->l) {
