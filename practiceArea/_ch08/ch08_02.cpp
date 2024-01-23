@@ -3,10 +3,13 @@
 using namespace std;
 
 void swap(int &a, int &b);
-void selection_sort(vector<int> &vec);
+void selection_sort(vector<int> &vec, int sort_mode);
 void show(vector<int> vec);
 void init_vec(vector<int> &vec, int count);
-void insertion_sort(vector<int> &vec);
+void insertion_sort(vector<int> &vec, int sort_mode);
+
+const int sort_from_small_to_large = 1;
+const int sort_from_large_to_smal  = 2; 
 
 int main() {
    
@@ -14,10 +17,10 @@ int main() {
     init_vec(vec, 5);
     show(vec);
     
-    selection_sort(vec);
+    selection_sort(vec, sort_from_small_to_large);
     show(vec);
 
-    insertion_sort(vec);
+    insertion_sort(vec, sort_from_large_to_smal);
     show(vec);
     
 
@@ -38,7 +41,11 @@ void swap(int &a, int &b) {
     a = b;
     b = tmp;
 }
-void selection_sort(vector<int> &vec) {
+void selection_sort(vector<int> &vec, int sort_mode) {
+
+    /*
+    const int sort_from_small_to_large = 1;
+    const int sort_from_large_to_smal  = 2; */
     // selection vec for all - 1
     for (size_t j = 0; j < vec.size() - 1; j++)
     {
@@ -48,11 +55,26 @@ void selection_sort(vector<int> &vec) {
         for (size_t i = j + 1; i < vec.size(); i++)
         {
             /* code */
-            if (vec[index_min] > vec[i])
+            if (sort_from_small_to_large == sort_mode)
             {
                 /* code */
-                index_min = i;
+                if (vec[index_min] > vec[i])
+                {
+                    /* code */
+                    index_min = i;
+                }
             }
+
+            if (sort_from_large_to_smal == sort_mode)
+            {
+                /* code */
+                if (vec[index_min] < vec[i])
+                {
+                    /* code */
+                    index_min = i;
+                }
+            }
+            
 
         }
         // swap
@@ -71,19 +93,39 @@ void show(vector<int> vec) {
     cout << endl;
 }
 
-void insertion_sort(vector<int> &vec) {
+void insertion_sort(vector<int> &vec, int sort_mode) {
+    /*
+    const int sort_from_small_to_large = 1;
+    const int sort_from_large_to_smal  = 2; */
     for (size_t i = 1; i < vec.size(); i++)
     {
         /* code */
         // move backward
         int key = vec[i];
         int bk = i - 1;
-        while (bk >= 0 && vec[bk] < key)
+
+        if (sort_from_large_to_smal == sort_mode)
         {
-            /* code */
-            vec[bk+1] = vec[bk];
-            --bk;
+            while (bk >= 0 && vec[bk] < key)
+            {
+                /* code */
+                vec[bk+1] = vec[bk];
+                --bk;
+            }
         }
+
+        if (sort_from_small_to_large == sort_mode)
+        {
+            while (bk >= 0 && vec[bk] > key)
+            {
+                /* code */
+                vec[bk+1] = vec[bk];
+                --bk;
+            }
+        }
+        
+        
+
         vec[bk + 1] = key;
     }
     cout << "insertion sort finish" << endl;
