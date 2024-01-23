@@ -15,7 +15,6 @@ int main() {
     cout << "origin: ";
     show(vec);
     
-    cout << "selection sort: ";
     selection_sort(vec);
     show(vec);
 
@@ -60,6 +59,8 @@ void selection_sort(vector<int> &vec) {
         // swap
         swap(vec[index_min], vec[j]);
     }
+
+    cout << "selection sort finish";
 }
 
 void show(vector<int> vec) {
