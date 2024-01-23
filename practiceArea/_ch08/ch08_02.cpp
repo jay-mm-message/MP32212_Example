@@ -74,8 +74,6 @@ void selection_sort(vector<int> &vec, int sort_mode) {
                     index = i;
                 }
             }
-            
-
         }
         // swap
         swap(vec[index], vec[j]);
