@@ -12,7 +12,6 @@ int main() {
    
     vector<int> vec;
     init_vec(vec, 5);
-    cout << "origin: ";
     show(vec);
     
     selection_sort(vec);
@@ -31,7 +30,7 @@ void init_vec(vector<int> &vec, int count) {
         /* code */
         vec.push_back(count - i);
     }
-    
+    cout << "origin source" << endl;
 }
 
 void swap(int &a, int &b) {
@@ -60,7 +59,7 @@ void selection_sort(vector<int> &vec) {
         swap(vec[index_min], vec[j]);
     }
 
-    cout << "selection sort finish";
+    cout << "selection sort finish" << endl;
 }
 
 void show(vector<int> vec) {
@@ -87,5 +86,5 @@ void insertion_sort(vector<int> &vec) {
         }
         vec[bk + 1] = key;
     }
-    cout << "insertion sort finish";
+    cout << "insertion sort finish" << endl;
 }
