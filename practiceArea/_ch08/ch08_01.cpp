@@ -1,34 +1,33 @@
-// select sort
 #include <iostream>
+
 using namespace std;
 
-void show(int arr[], int size);
-void swap_data(int &a, int &b);
-void min_selection_sort(int arr[], int size);
-void max_selection_sort(int arr[], int size);
+void swap(int &a, int &b);
+void selection_sort(vector<int> &vec);
+void show(vector<int> vec);
+void init_vec(vector<int> &vec, int count);
 
 int main() {
-
-    int data[] = {55, 23, 87, 62, 16};
-
+   
+    vector<int> vec;
+    init_vec(vec, 5);
     cout << "origin: ";
-    show(data, 5);
+    show(vec);
     
-    cout << "min selection sort: ";
-    min_selection_sort(data, 5);
-    show(data, 5);
+    cout << "selection sort: ";
+    selection_sort(vec);
+    show(vec);
 
-    cout << "max selection sort: ";
-    max_selection_sort(data, 5);
-    show(data, 5);
     return 0;
 }
 
-void show(int arr[], int size) {
-    for (int i = 0 ; i < size ; ++i) {
-        cout << arr[i] << ' ';
+void init_vec(vector<int> &vec, int count) {
+    for (size_t i = 0; i < count; i++)
+    {
+        /* code */
+        vec.push_back(count - i);
     }
-    cout << endl;
+    
 }
 
 void swap(int &a, int &b) {
@@ -36,35 +35,33 @@ void swap(int &a, int &b) {
     a = b;
     b = tmp;
 }
-
-void min_selection_sort(int arr[], int size) {
-    for (size_t i = 0; i < size; i++)
+void selection_sort(vector<int> &vec) {
+    // selection vec for all - 1
+    for (size_t j = 0; j < vec.size() - 1; j++)
     {
         /* code */
-        int min = arr[i];
-        for (size_t j = 0; j < size; j++)
+        // scan index for all - 1 find out min
+        int index_min = j;
+        for (size_t i = j + 1; i < vec.size(); i++)
         {
             /* code */
-            if (min < arr[j])
+            if (vec[index_min] > vec[i])
             {
                 /* code */
-                swap(arr[i], arr[j]);
+                index_min = i;
             }
-        }  
-    } 
+
+        }
+        // swap
+        swap(vec[index_min], vec[j]);
+    }
 }
 
-void max_selection_sort(int arr[], int size) {
-    for (size_t i = 0; i < size; i++)
+void show(vector<int> vec) {
+    for (size_t i = 0; i < vec.size(); i++)
     {
-        int max = arr[i];
-        for (size_t j = 0; j < size; j++)
-        {
-            /* code */
-            if (max > arr[j])
-            {
-                swap(arr[i], arr[j]);
-            }
-        }
+        /* code */
+        cout << vec[i] << ' ';
     }
+    cout << endl;
 }
