@@ -51,34 +51,34 @@ void selection_sort(vector<int> &vec, int sort_mode) {
     {
         /* code */
         // scan index for all - 1 find out min
-        int index_min = j;
+        int index = j;
         for (size_t i = j + 1; i < vec.size(); i++)
         {
             /* code */
             if (sort_from_small_to_large == sort_mode)
             {
                 /* code */
-                if (vec[index_min] > vec[i])
+                if (vec[index] > vec[i])
                 {
                     /* code */
-                    index_min = i;
+                    index = i;
                 }
             }
 
             if (sort_from_large_to_smal == sort_mode)
             {
                 /* code */
-                if (vec[index_min] < vec[i])
+                if (vec[index] < vec[i])
                 {
                     /* code */
-                    index_min = i;
+                    index = i;
                 }
             }
             
 
         }
         // swap
-        swap(vec[index_min], vec[j]);
+        swap(vec[index], vec[j]);
     }
 
     cout << "selection sort finish" << endl;
