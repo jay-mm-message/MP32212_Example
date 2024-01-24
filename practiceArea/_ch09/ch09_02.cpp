@@ -5,15 +5,17 @@ void init_vec(vector<int> &vec, int count);
 void show(vector<int> &vec);
 void selection_sort(vector<int> &vec);
 void linear_search(vector<int> &vec, int foundNum);
+void binary_search(vector<int> &vec, int foundNum);
 
 int main() {
     vector<int> vec(0);
     init_vec(vec, 80);
     show(vec);
-    linear_search(vec, 8);
+    //linear_search(vec, 8);
 
-    // selection_sort(vec);
-    // show(vec);
+    selection_sort(vec);
+    show(vec);
+    binary_search(vec, 9);
     
     return 0;
 }
@@ -25,7 +27,7 @@ void show(vector<int> &vec) {
         /* code */
         cout << vec[i] << ' ';
     }
-    cout << endl;
+    cout << endl << endl;
 }
 
 void init_vec(vector<int> &vec, int count) {
@@ -90,4 +92,43 @@ void linear_search(vector<int> &vec, int foundNum) {
     {
          cout << "Not found number: " << foundNum << ", search cost: " << searchCount << endl;
     }
+}
+
+void binary_search(vector<int> &vec, int foundNum) {
+
+    cout << __FUNCTION__ << ":" << ' ';
+    int l = 0;
+    int r = vec.size();
+    int mid = (l + r) / 2;
+
+    bool isFound = false;
+    while (l <= r && foundNum != -1)
+    {
+        /* code */
+        if (foundNum > vec[mid])
+        {
+            /* code */
+            l = mid + 1;
+        }
+        else if (foundNum < vec[mid])
+        {
+            r = mid - 1;
+        }
+        else
+        {
+            isFound = true;
+            break;
+        }
+        mid = (l + r) / 2;
+    }
+    if (isFound)
+    {
+        /* code */
+        cout << "Found num: " << foundNum << endl;
+    }
+    else
+    {
+        cout << "Not found num: " << foundNum << endl;
+    }
+    
 }
