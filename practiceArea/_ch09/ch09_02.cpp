@@ -16,6 +16,8 @@ int main() {
     show(vec);
     //linear_search(vec, 8);
 
+    selection_sort(vec);
+    show(vec);
 
     int search_mode = 0, search_number = 0;
     cout << "Please enter search mode: (1) binary search, (2) linear search ";
@@ -26,8 +28,6 @@ int main() {
     switch (search_mode)
     {
     case BSR:
-        selection_sort(vec);
-        show(vec);
         binary_search(vec, search_number);
         break;
     case LSR:
